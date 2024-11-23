@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table{
+        padding:20px;
+    }
+    th,td{
+        padding:20px;
+        border:2px solid aqua;
+    }
+    tr.active
+    {
+        background-color: royalblue;
+        color:white;
+    }
+    
+</style>
+<body>
+    <table id="table">
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Mohan</td>
+            <td>India</td>
+            <td>19</td>
+        </tr>
+        <tr>
+            <td>Raj</td>
+            <td>India</td>
+            <td>20</td>
+        </tr>
+        <tr><td>Praveen</td>
+        <td>USA</td>
+        <td>21</td></tr>
+
+    </table>
+</body>
+<script>
+  var a=document.getElementById("table");
+  let select;
+  a.addEventListener("click",function(event)
+  {
+     var el=event.target.closest("tr");
+     if(select!=undefined)
+     {
+        select.classList.remove("active");
+     }
+     select=el;
+     if(event.target.tagName==="TH")
+     {
+        return;
+     }
+     
+     console.log(el);
+     alert(`hellooo ${el.children[0].textContent}`);
+     el.classList.add("active");
+     
+  });
+</script>
+</html>

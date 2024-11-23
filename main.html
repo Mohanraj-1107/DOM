@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylle.css">
+</head>
+<style>
+    form{
+        border: 2px solid green;
+        padding:15px;
+    }form div{
+        border:2px solid red;
+        margin:15px;
+    }
+   form div p{
+        border:2px solid yellow;
+        margin:30px;
+        padding:20px;
+        border-left:2px solid yellow ;
+    }
+</style>
+<body>
+    <div id="in">
+        <center><input id="input" type="text"></center>
+        <button onclick="my()">submit</button>
+    </div>
+    <div id="textarea">
+        <!-- helloo -->
+        <ol id="orderlist"><li class="food"><div>sambar</div><div style="cursor: pointer;" onclick="removing(event)">X</div></li>
+            <li class="food"><div>Briyani</div><div style="cursor: pointer;" onclick="removing(event)">X</div></li>
+            <li class="food"><div>Rasam</div><div  style="cursor: pointer;" onclick="removing(event)">X</div></li>
+            
+        </ol>
+    </div>
+    <form>
+        form
+        <div>
+            div
+            <p>
+                p
+            </p>
+            </div>
+            
+        </form>
+        </body>
+    <script>
+       
+
+        function my()
+        {
+            var input=document.getElementById("input");
+            var list=document.createElement("li");
+            var div1=document.createElement("div");
+            var div2=document.createElement("div");
+            var textarea=document.getElementById("orderlist");
+            list.setAttribute("class","food");
+            div1.innerHTML=input.value;
+            div2.innerText="X";
+            div2.setAttribute("onclick","removing(event)");
+            div2.style.cursor="pointer";
+            textarea.append(list);
+            list.append(div1);
+            list.append(div2);
+
+        }
+        function removing(event)
+        {
+          event.target.parentElement.remove();
+        }
+
+    // //finding child DOM
+     var element=document.querySelector("#orderlist")
+    // console.log(element.children);
+     var element2=document.getElementById("textarea");
+    // console.log(element2.firstChild);
+    // console.log(element.firstElementChild);
+    // console.log(element2.lastChild);
+    // console.log(element2.lastElementChild);
+    // console.log(element2.childNodes);
+   
+    // //find parent elements
+    //  console.log(element2.parentElement);
+    //  console.log(element2.parentNode);
+    //  console.log(element2.parentElement.parentElement);
+    
+
+     //closest method(it only checks up the DOM)
+     var el=document.querySelector(".food")
+     console.log(element.closest("#textarea"));
+     console.log(el.closest("#orderlist"));
+     //Event bubbling and capturing
+     //if click the p tag then all the three event listeners are executed that is called event bubbling child-->parent
+     //event bubbling child-->parent ex.p-->div-->form
+     //event capturing parent-->child ex.form-->div-->p
+     //capture is defaultly false we change it to true the it execute events in order form-->div-->p
+     //event.stopPropagation() method stop the bubbling and capturing at particular point
+
+     var formel=document.querySelector("form");
+     var divel=document.querySelector("form div");
+     var pel=document.querySelector("form p");
+     formel.addEventListener("click",function()
+     {
+        alert("form ");
+     },{capture:true})
+     divel.addEventListener("click",function()
+     {
+        //event.stopPropagation();//it stop the execution ex.click p tag the pand div only executed and stop form is not executed
+        alert("div ");
+     },{capture:true})
+     pel.addEventListener("click",function()
+     {
+        alert("p");
+     },{capture:true})
+     
+    </script>
+</body>
+</html>
